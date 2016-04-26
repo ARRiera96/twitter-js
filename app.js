@@ -1,6 +1,16 @@
 var express = require( 'express' );
 var app = express();
 
+app.use(function(request, response, next){
+	console.log(request.method, request.path);
+	next(); 
+});
+
+app.use('/special',function(request, response, next){
+	console.log("you reached the special area.");
+	next(); 
+});
+
 app.get('/', function (req, res) {
   res.send('Hello World!');
 });
