@@ -1,7 +1,8 @@
 var _= require('lodash'); 
 var data= [];
+var id= 0; 
 function add (name, text) {
-  data.push({ name: name, text: text });
+  data.push({ name: name, text: text, id: id++ });
 }
 
 function list () {

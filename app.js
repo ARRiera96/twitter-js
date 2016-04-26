@@ -2,6 +2,9 @@ var express = require( 'express' );
 var app = express();
 var swig= require('swig'); 
 var routes = require('./routes/');
+
+
+
 app.use('/', routes);
 app.use(express.static('public'));
 
