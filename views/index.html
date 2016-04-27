@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 
 {% block content %}
-  
+
   <div class="page-header">
     <h1>Welcome to Twitter.js!</h1>
   </div>
   {% if showForm %}
   <form action="/tweets" method="POST">
     <label for="name_field">Name:</label>
-    <input name="name" type="text" id="name_field" />
+    <input name="name" type="text" id="name_field" value="{{tweets[0].name}}"/>
 
     <label for="text_field">Text:</label>
     <input name="text" type="text" id="text_field" style="width: 350px;" />
@@ -24,17 +24,17 @@
     </div>
     <h3>All Tweets</h3>
     <div class="col-md-9">
-    
+
       <!-- display tweets here -->
       <!-- <ol>-->
       {% for tweet in tweets %}
-      
+
        <li><a href='/users/{{tweet.name}}'><b>{{tweet.name}}</b></a> <br><a href='/tweets/{{tweet.id}}'>{{tweet.text}}</li>
        <a href='#'>Retweet</a>
       {% endfor %}
 
-      
+
     </div>
   </div>
-    
+
 {% endblock %}

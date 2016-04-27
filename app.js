@@ -1,25 +1,29 @@
 var express = require( 'express' );
 var app = express();
-var swig= require('swig'); 
+var swig= require('swig');
 var routes = require('./routes/');
+var socketio = require('socket.io');
 
 
 
-app.use('/', routes);
+var server = app.listen(3000);
+var io = socketio.listen(server);
+
+app.use('/', routes(io));
 app.use(express.static('public'));
 
 // app.use(function(request, response, next){
 // 	console.log(request.method, request.path);
-// 	next(); 
+// 	next();
 // });
 
 // app.use('/special',function(request, response, next){
 // 	console.log("you reached the special area.");
-// 	next(); 
+// 	next();
 // });
 
 app.engine('html', swig.renderFile);
-app.set('view engine', 'html'); 
+app.set('view engine', 'html');
 swig.setDefaults({ cache: false });
 
 // app.get('/', function (req, res) {
@@ -48,9 +52,9 @@ swig.setDefaults({ cache: false });
 // });
 
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-});
+// app.listen(3000, function () {
+//   console.log('Example app listening on port 3000!');
+// });
 
 // // in some file that is in the root directory of our application
 // var locals = {
@@ -64,4 +68,3 @@ app.listen(3000, function () {
 // swig.renderFile(__dirname + '/views/index.html', locals, function (err, output) {
 //     console.log(output);
 // });
-
